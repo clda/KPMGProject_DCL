@@ -1,0 +1,15 @@
+Hi..
+
+Steps to Execute.
+
+1) I have kept the database back-up file , filename = DarshanDBbackup.
+please restore it to run the application.
+
+If there is no provision to create db, i have kept queries. please Excute it.
+
+2) I have kept the solution file.
+
+Login credentials
+
+UserName = Darshan or Naveen
+Password = password123  [NOTE = all letters in small case]

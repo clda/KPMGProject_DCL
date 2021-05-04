@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DARSHANModelStoreContainer" CdmEntityContainer="DARSHANEntities2">
+    <EntitySetMapping Name="tblProducts">
+      <EntityTypeMapping TypeName="DARSHANModel.tblProduct">
+        <MappingFragment StoreEntitySet="tblProducts">
+          <ScalarProperty Name="iProductId" ColumnName="iProductId" />
+          <ScalarProperty Name="vchProductName" ColumnName="vchProductName" />
+          <ScalarProperty Name="vchProductCategory" ColumnName="vchProductCategory" />
+          <ScalarProperty Name="decproductPrice" ColumnName="decproductPrice" />
+          <ScalarProperty Name="dtPurchaseDate" ColumnName="dtPurchaseDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserLoginDetails">
+      <EntityTypeMapping TypeName="DARSHANModel.tblUserLoginDetail">
+        <MappingFragment StoreEntitySet="tblUserLoginDetails">
+          <ScalarProperty Name="iUserId" ColumnName="iUserId" />
+          <ScalarProperty Name="vchUserName" ColumnName="vchUserName" />
+          <ScalarProperty Name="vchUserPassword" ColumnName="vchUserPassword" />
+          <ScalarProperty Name="vchUserRole" ColumnName="vchUserRole" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="Proc_UserLogin" FunctionName="DARSHANModel.Store.Proc_UserLogin">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DARSHANModel.Proc_UserLogin_Result">
+          <ScalarProperty Name="iUserId" ColumnName="iUserId" />
+          <ScalarProperty Name="vchUserName" ColumnName="vchUserName" />
+          <ScalarProperty Name="vchUserPassword" ColumnName="vchUserPassword" />
+          <ScalarProperty Name="vchUserRole" ColumnName="vchUserRole" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="Proc_ViewProductById" FunctionName="DARSHANModel.Store.Proc_ViewProductById">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DARSHANModel.Proc_ViewProductById_Result">
+          <ScalarProperty Name="iProductId" ColumnName="iProductId" />
+          <ScalarProperty Name="vchProductName" ColumnName="vchProductName" />
+          <ScalarProperty Name="vchProductCategory" ColumnName="vchProductCategory" />
+          <ScalarProperty Name="decproductPrice" ColumnName="decproductPrice" />
+          <ScalarProperty Name="dtPurchaseDate" ColumnName="dtPurchaseDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="proc_ViewProducts" FunctionName="DARSHANModel.Store.proc_ViewProducts">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DARSHANModel.proc_ViewProducts_Result">
+          <ScalarProperty Name="iProductId" ColumnName="iProductId" />
+          <ScalarProperty Name="vchProductName" ColumnName="vchProductName" />
+          <ScalarProperty Name="vchProductCategory" ColumnName="vchProductCategory" />
+          <ScalarProperty Name="decproductPrice" ColumnName="decproductPrice" />
+          <ScalarProperty Name="dtPurchaseDate" ColumnName="dtPurchaseDate" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

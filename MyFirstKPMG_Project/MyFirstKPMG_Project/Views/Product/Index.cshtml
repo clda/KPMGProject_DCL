@@ -1,0 +1,51 @@
+﻿@model List<MyFirstKPMG_Project.Models.tblProduct>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2 style="color:orangered"> All Products Detail</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Date of Purchase</th>
+        <th></th>
+    </tr>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.iProductId
+            </td>
+
+            <td>
+                @item.vchProductName
+            </td>
+
+            <td>
+                @item.vchProductCategory
+            </td>
+
+            <td>
+                @item.decproductPrice.Value.ToString("C")
+            </td>
+
+            <td>
+                @item.dtPurchaseDate.Value.ToString("d/M/yyyy")
+            </td>
+
+            <td>@Html.ActionLink("Detail", "Detail", new { id = item.iProductId, controller = "product" })</td>
+        </tr>
+    }
+</table>
+<br />
+
+@Html.ActionLink("Export to Excel", "Reports")

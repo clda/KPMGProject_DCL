@@ -1,0 +1,29 @@
+﻿@model MyFirstKPMG_Project.Models.tblProduct
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<h2>Product Details</h2>
+
+<table class="table">
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Date of Purchase</th>
+    </tr>
+
+
+    <tr>
+        <td>@Model.iProductId</td>
+        <td>@Model.vchProductName</td>
+        <td>@Model.vchProductCategory</td>
+        <td>@Model.decproductPrice.Value.ToString("C")</td>
+        <td>@Model.dtPurchaseDate.Value.ToString("d/M/yyyy")</td>
+    </tr>
+
+</table>
+    

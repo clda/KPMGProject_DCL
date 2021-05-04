@@ -1,0 +1,43 @@
+﻿@model MyFirstKPMG_Project.Models.tblUserLoginDetail
+@{
+
+    ViewBag.Title = "User Login Page";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+
+<div class="jumbotron jumbotron-fluid justify-content-lg-center bg-transparent">
+
+    <div class="container-fluid">
+        <h1 style="text-align:center">User Login Page</h1>
+        <br />
+
+        <h2 style="color:darkred">Please Login to view the Products Page</h2>
+        <br /> <br />
+        
+        @using (Html.BeginForm("VerifyUser", "Login"))
+        {
+            <div class="form-group form-row">
+                @Html.LabelFor(x => x.vchUserName, new { @class = "col-sm-1 col-form-label" })
+                @Html.TextBoxFor(x => x.vchUserName, new { @class = "form-control col-form-label-lg  col-2" })<br />
+                @Html.ValidationMessageFor(x => x.vchUserName)
+            </div>
+
+            <div class="form-group form-row">
+                @Html.LabelFor(x => x.vchUserPassword, new { @class = "col-sm-1 col-form-label" })
+                @Html.PasswordFor(x => x.vchUserPassword, new { @class = "form-control col-form-label-lg  col-2" })<br />
+                @Html.ValidationMessageFor(x => x.vchUserPassword)
+            </div>
+
+            @ViewBag.Error
+
+            <br /><br />
+
+            <button type="submit" class="btn-lg btn-success " value="Submit" id="Submit" name="buttonSubmit">Login</button>
+        }
+
+    </div>
+</div>
+
+

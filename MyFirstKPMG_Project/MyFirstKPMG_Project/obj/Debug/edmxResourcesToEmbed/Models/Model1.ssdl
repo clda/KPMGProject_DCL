@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DARSHANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblProducts">
+    <Key>
+      <PropertyRef Name="iProductId" />
+    </Key>
+    <Property Name="iProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vchProductName" Type="varchar(max)" />
+    <Property Name="vchProductCategory" Type="varchar(max)" />
+    <Property Name="decproductPrice" Type="decimal" Precision="18" Scale="4" />
+    <Property Name="dtPurchaseDate" Type="date" />
+  </EntityType>
+  <EntityType Name="tblUserLoginDetails">
+    <Key>
+      <PropertyRef Name="iUserId" />
+    </Key>
+    <Property Name="iUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="vchUserName" Type="varchar" MaxLength="50" />
+    <Property Name="vchUserPassword" Type="varchar" MaxLength="50" />
+    <Property Name="vchUserRole" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="Proc_UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="UserName" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="Proc_ViewProductById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ProductId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="proc_ViewProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="DARSHANModelStoreContainer">
+    <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserLoginDetails" EntityType="Self.tblUserLoginDetails" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DARSHANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblProducts">
+          <Key>
+            <PropertyRef Name="iProductId" />
+          </Key>
+          <Property Name="iProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vchProductName" Type="varchar(max)" />
+          <Property Name="vchProductCategory" Type="varchar(max)" />
+          <Property Name="decproductPrice" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="dtPurchaseDate" Type="date" />
+        </EntityType>
+        <EntityType Name="tblUserLoginDetails">
+          <Key>
+            <PropertyRef Name="iUserId" />
+          </Key>
+          <Property Name="iUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vchUserName" Type="varchar" MaxLength="50" />
+          <Property Name="vchUserPassword" Type="varchar" MaxLength="50" />
+          <Property Name="vchUserRole" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="Proc_UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Proc_ViewProductById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ProductId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="proc_ViewProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="DARSHANModelStoreContainer">
+          <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserLoginDetails" EntityType="Self.tblUserLoginDetails" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DARSHANModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblProduct">
+          <Key>
+            <PropertyRef Name="iProductId" />
+          </Key>
+          <Property Name="iProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vchProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="vchProductCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="decproductPrice" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="dtPurchaseDate" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="tblUserLoginDetail">
+          <Key>
+            <PropertyRef Name="iUserId" />
+          </Key>
+          <Property Name="iUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vchUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vchUserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vchUserRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="DARSHANEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+          <EntitySet Name="tblUserLoginDetails" EntityType="Self.tblUserLoginDetail" />
+          <FunctionImport Name="Proc_UserLogin" ReturnType="Collection(DARSHANModel.Proc_UserLogin_Result)">
+            <Parameter Name="UserName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Proc_ViewProductById" ReturnType="Collection(DARSHANModel.Proc_ViewProductById_Result)">
+            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="proc_ViewProducts" ReturnType="Collection(DARSHANModel.proc_ViewProducts_Result)" />
+        </EntityContainer>
+        <ComplexType Name="Proc_UserLogin_Result">
+          <Property Type="Int32" Name="iUserId" Nullable="false" />
+          <Property Type="String" Name="vchUserName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="vchUserPassword" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="vchUserRole" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Proc_ViewProductById_Result">
+          <Property Type="Int32" Name="iProductId" Nullable="false" />
+          <Property Type="String" Name="vchProductName" Nullable="true" />
+          <Property Type="String" Name="vchProductCategory" Nullable="true" />
+          <Property Type="Decimal" Name="decproductPrice" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="DateTime" Name="dtPurchaseDate" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="proc_ViewProducts_Result">
+          <Property Type="Int32" Name="iProductId" Nullable="false" />
+          <Property Type="String" Name="vchProductName" Nullable="true" />
+          <Property Type="String" Name="vchProductCategory" Nullable="true" />
+          <Property Type="Decimal" Name="decproductPrice" Nullable="true" Precision="18" Scale="4" />
+          <Property Type="DateTime" Name="dtPurchaseDate" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DARSHANModelStoreContainer" CdmEntityContainer="DARSHANEntities2">
+          <EntitySetMapping Name="tblProducts">
+            <EntityTypeMapping TypeName="DARSHANModel.tblProduct">
+              <MappingFragment StoreEntitySet="tblProducts">
+                <ScalarProperty Name="iProductId" ColumnName="iProductId" />
+                <ScalarProperty Name="vchProductName" ColumnName="vchProductName" />
+                <ScalarProperty Name="vchProductCategory" ColumnName="vchProductCategory" />
+                <ScalarProperty Name="decproductPrice" ColumnName="decproductPrice" />
+                <ScalarProperty Name="dtPurchaseDate" ColumnName="dtPurchaseDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserLoginDetails">
+            <EntityTypeMapping TypeName="DARSHANModel.tblUserLoginDetail">
+              <MappingFragment StoreEntitySet="tblUserLoginDetails">
+                <ScalarProperty Name="iUserId" ColumnName="iUserId" />
+                <ScalarProperty Name="vchUserName" ColumnName="vchUserName" />
+                <ScalarProperty Name="vchUserPassword" ColumnName="vchUserPassword" />
+                <ScalarProperty Name="vchUserRole" ColumnName="vchUserRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Proc_UserLogin" FunctionName="DARSHANModel.Store.Proc_UserLogin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DARSHANModel.Proc_UserLogin_Result">
+                <ScalarProperty Name="iUserId" ColumnName="iUserId" />
+                <ScalarProperty Name="vchUserName" ColumnName="vchUserName" />
+                <ScalarProperty Name="vchUserPassword" ColumnName="vchUserPassword" />
+                <ScalarProperty Name="vchUserRole" ColumnName="vchUserRole" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Proc_ViewProductById" FunctionName="DARSHANModel.Store.Proc_ViewProductById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DARSHANModel.Proc_ViewProductById_Result">
+                <ScalarProperty Name="iProductId" ColumnName="iProductId" />
+                <ScalarProperty Name="vchProductName" ColumnName="vchProductName" />
+                <ScalarProperty Name="vchProductCategory" ColumnName="vchProductCategory" />
+                <ScalarProperty Name="decproductPrice" ColumnName="decproductPrice" />
+                <ScalarProperty Name="dtPurchaseDate" ColumnName="dtPurchaseDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="proc_ViewProducts" FunctionName="DARSHANModel.Store.proc_ViewProducts">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DARSHANModel.proc_ViewProducts_Result">
+                <ScalarProperty Name="iProductId" ColumnName="iProductId" />
+                <ScalarProperty Name="vchProductName" ColumnName="vchProductName" />
+                <ScalarProperty Name="vchProductCategory" ColumnName="vchProductCategory" />
+                <ScalarProperty Name="decproductPrice" ColumnName="decproductPrice" />
+                <ScalarProperty Name="dtPurchaseDate" ColumnName="dtPurchaseDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/umd/popper.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+
+    <title>@ViewBag.Title</title>
+
+    <style>
+        .field-validation-error
+        {
+            color:red
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-sm bg-info navbar-dark justify-content-lg-around ">
+        <a class="navbar-brand nav-tabs" href="#">PRODUCTS COMPANY</a>
+        <ul class="navbar-nav">
+
+            @if (User.Identity.IsAuthenticated == false)
+            {
+                <li class="nav-pills bg-success btn-group-lg active"><a class="nav-link" href="/Login/VerifyUser">LOGIN</a></li>
+            }
+            @if (User.Identity.IsAuthenticated == true)
+            {
+                <li class="nav-pills bg-danger active "><a class="nav-link" href="/Login/UserSignOut"> LOGOUT </a></li>
+            }
+
+            </ul>
+    </nav>
+    <br />
+
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DARSHANModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblProduct">
+    <Key>
+      <PropertyRef Name="iProductId" />
+    </Key>
+    <Property Name="iProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vchProductName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="vchProductCategory" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="decproductPrice" Type="Decimal" Precision="18" Scale="4" />
+    <Property Name="dtPurchaseDate" Type="DateTime" Precision="0" />
+  </EntityType>
+  <EntityType Name="tblUserLoginDetail">
+    <Key>
+      <PropertyRef Name="iUserId" />
+    </Key>
+    <Property Name="iUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vchUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="vchUserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="vchUserRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="DARSHANEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
+    <EntitySet Name="tblUserLoginDetails" EntityType="Self.tblUserLoginDetail" />
+    <FunctionImport Name="Proc_UserLogin" ReturnType="Collection(DARSHANModel.Proc_UserLogin_Result)">
+      <Parameter Name="UserName" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="Proc_ViewProductById" ReturnType="Collection(DARSHANModel.Proc_ViewProductById_Result)">
+      <Parameter Name="ProductId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="proc_ViewProducts" ReturnType="Collection(DARSHANModel.proc_ViewProducts_Result)" />
+  </EntityContainer>
+  <ComplexType Name="Proc_UserLogin_Result">
+    <Property Type="Int32" Name="iUserId" Nullable="false" />
+    <Property Type="String" Name="vchUserName" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="vchUserPassword" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="vchUserRole" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="Proc_ViewProductById_Result">
+    <Property Type="Int32" Name="iProductId" Nullable="false" />
+    <Property Type="String" Name="vchProductName" Nullable="true" />
+    <Property Type="String" Name="vchProductCategory" Nullable="true" />
+    <Property Type="Decimal" Name="decproductPrice" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="DateTime" Name="dtPurchaseDate" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="proc_ViewProducts_Result">
+    <Property Type="Int32" Name="iProductId" Nullable="false" />
+    <Property Type="String" Name="vchProductName" Nullable="true" />
+    <Property Type="String" Name="vchProductCategory" Nullable="true" />
+    <Property Type="Decimal" Name="decproductPrice" Nullable="true" Precision="18" Scale="4" />
+    <Property Type="DateTime" Name="dtPurchaseDate" Nullable="true" />
+  </ComplexType>
+</Schema>

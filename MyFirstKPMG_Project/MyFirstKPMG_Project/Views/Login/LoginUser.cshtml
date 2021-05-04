@@ -1,0 +1,16 @@
+﻿@model MyFirstKPMG_Project.Models.tblProduct
+@{
+    ViewBag.Title = "LoginUser";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<h2 style="color:chocolate">User Successfully Logged-In</h2><br />
+
+@Html.ActionLink("View Product Details", "Index","Product")
+
+
+ <div class="nav justify-content-center bg-transparent jumbotron jumbotron-fluid"  style="color:crimson">
+     <h1 style="color:crimson"> Welcome to - @User.Identity.Name</h1>
+ </div>
+
