@@ -29,6 +29,8 @@
       <Parameter Name="ProductId" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="proc_ViewProducts" ReturnType="Collection(DARSHANModel.proc_ViewProducts_Result)" />
+    <EntitySet Name="tblFruitsDetails" EntityType="DARSHANModel.tblFruitsDetail" />
+    <FunctionImport Name="proc_FruitsDetail" ReturnType="Collection(DARSHANModel.proc_FruitsDetail_Result)" />
   </EntityContainer>
   <ComplexType Name="Proc_UserLogin_Result">
     <Property Type="Int32" Name="iUserId" Nullable="false" />
@@ -49,5 +51,18 @@
     <Property Type="String" Name="vchProductCategory" Nullable="true" />
     <Property Type="Decimal" Name="decproductPrice" Nullable="true" Precision="18" Scale="4" />
     <Property Type="DateTime" Name="dtPurchaseDate" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="tblFruitsDetail">
+    <Key>
+      <PropertyRef Name="FruitId" />
+    </Key>
+    <Property Name="FruitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FruitName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FruitPrice" Type="Decimal" Precision="10" Scale="3" />
+  </EntityType>
+  <ComplexType Name="proc_FruitsDetail_Result">
+    <Property Type="Int32" Name="FruitId" Nullable="false" />
+    <Property Type="String" Name="FruitName" Nullable="true" MaxLength="50" />
+    <Property Type="Decimal" Name="FruitPrice" Nullable="true" Precision="10" Scale="3" />
   </ComplexType>
 </Schema>

@@ -7,6 +7,7 @@
       <Diagram DiagramId="a86d5d44022049bda137c65c6f0ebfd9" Name="Diagram1">
         <EntityTypeShape EntityType="DARSHANModel.tblProduct" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DARSHANModel.tblUserLoginDetail" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DARSHANModel.tblFruitsDetail" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

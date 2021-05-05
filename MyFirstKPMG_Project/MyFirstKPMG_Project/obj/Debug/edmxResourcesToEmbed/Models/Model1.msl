@@ -54,5 +54,23 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="tblFruitsDetails">
+      <EntityTypeMapping TypeName="DARSHANModel.tblFruitsDetail">
+        <MappingFragment StoreEntitySet="tblFruitsDetails">
+          <ScalarProperty Name="FruitPrice" ColumnName="FruitPrice" />
+          <ScalarProperty Name="FruitName" ColumnName="FruitName" />
+          <ScalarProperty Name="FruitId" ColumnName="FruitId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="proc_FruitsDetail" FunctionName="DARSHANModel.Store.proc_FruitsDetail">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="DARSHANModel.proc_FruitsDetail_Result">
+          <ScalarProperty Name="FruitId" ColumnName="FruitId" />
+          <ScalarProperty Name="FruitName" ColumnName="FruitName" />
+          <ScalarProperty Name="FruitPrice" ColumnName="FruitPrice" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

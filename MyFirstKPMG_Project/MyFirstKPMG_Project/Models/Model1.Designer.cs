@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'F:\PRACTICE\KPMG_CodingTest\MyFirstKPMG_Project\MyFirstKPMG_Project\Models\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'F:\PRACTICE\KPMG_CodingTest\GIT_KPMG\KPMGProject_DCL\MyFirstKPMG_Project\MyFirstKPMG_Project\Models\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

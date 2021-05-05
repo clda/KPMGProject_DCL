@@ -4,7 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DARSHANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DARSHANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblFruitsDetails">
+          <Key>
+            <PropertyRef Name="FruitId" />
+          </Key>
+          <Property Name="FruitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FruitName" Type="varchar" MaxLength="50" />
+          <Property Name="FruitPrice" Type="decimal" Precision="10" Scale="3" />
+        </EntityType>
         <EntityType Name="tblProducts">
           <Key>
             <PropertyRef Name="iProductId" />
@@ -24,6 +32,7 @@
           <Property Name="vchUserPassword" Type="varchar" MaxLength="50" />
           <Property Name="vchUserRole" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Function Name="proc_FruitsDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Proc_UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserName" Type="varchar" Mode="In" />
         </Function>
@@ -32,11 +41,11 @@
         </Function>
         <Function Name="proc_ViewProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="DARSHANModelStoreContainer">
+          <EntitySet Name="tblFruitsDetails" EntityType="Self.tblFruitsDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUserLoginDetails" EntityType="Self.tblUserLoginDetails" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DARSHANModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -63,12 +72,14 @@
           <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
           <EntitySet Name="tblUserLoginDetails" EntityType="Self.tblUserLoginDetail" />
           <FunctionImport Name="Proc_UserLogin" ReturnType="Collection(DARSHANModel.Proc_UserLogin_Result)">
-            <Parameter Name="UserName" Mode="In" Type="String" />
+          <Parameter Name="UserName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Proc_ViewProductById" ReturnType="Collection(DARSHANModel.Proc_ViewProductById_Result)">
-            <Parameter Name="ProductId" Mode="In" Type="Int32" />
+          <Parameter Name="ProductId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="proc_ViewProducts" ReturnType="Collection(DARSHANModel.proc_ViewProducts_Result)" />
+          <EntitySet Name="tblFruitsDetails" EntityType="DARSHANModel.tblFruitsDetail" />
+          <FunctionImport Name="proc_FruitsDetail" ReturnType="Collection(DARSHANModel.proc_FruitsDetail_Result)" />
         </EntityContainer>
         <ComplexType Name="Proc_UserLogin_Result">
           <Property Type="Int32" Name="iUserId" Nullable="false" />
@@ -89,6 +100,19 @@
           <Property Type="String" Name="vchProductCategory" Nullable="true" />
           <Property Type="Decimal" Name="decproductPrice" Nullable="true" Precision="18" Scale="4" />
           <Property Type="DateTime" Name="dtPurchaseDate" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tblFruitsDetail">
+          <Key>
+            <PropertyRef Name="FruitId" />
+          </Key>
+          <Property Name="FruitId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FruitName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FruitPrice" Type="Decimal" Precision="10" Scale="3" />
+        </EntityType>
+        <ComplexType Name="proc_FruitsDetail_Result">
+          <Property Type="Int32" Name="FruitId" Nullable="false" />
+          <Property Type="String" Name="FruitName" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="FruitPrice" Nullable="true" Precision="10" Scale="3" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -146,6 +170,24 @@
                 <ScalarProperty Name="vchProductCategory" ColumnName="vchProductCategory" />
                 <ScalarProperty Name="decproductPrice" ColumnName="decproductPrice" />
                 <ScalarProperty Name="dtPurchaseDate" ColumnName="dtPurchaseDate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblFruitsDetails">
+            <EntityTypeMapping TypeName="DARSHANModel.tblFruitsDetail">
+              <MappingFragment StoreEntitySet="tblFruitsDetails">
+                <ScalarProperty Name="FruitPrice" ColumnName="FruitPrice" />
+                <ScalarProperty Name="FruitName" ColumnName="FruitName" />
+                <ScalarProperty Name="FruitId" ColumnName="FruitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="proc_FruitsDetail" FunctionName="DARSHANModel.Store.proc_FruitsDetail">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DARSHANModel.proc_FruitsDetail_Result">
+                <ScalarProperty Name="FruitId" ColumnName="FruitId" />
+                <ScalarProperty Name="FruitName" ColumnName="FruitName" />
+                <ScalarProperty Name="FruitPrice" ColumnName="FruitPrice" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

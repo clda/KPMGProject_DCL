@@ -59,5 +59,25 @@ Select * from tblUserLoginDetails LD where LD.vchUserName = @UserName
 End
 
 
+Create table tblFruitsDetails
+						(FruitId int  Identity(1,1) primary key,
+						 FruitName varchar(50),
+						 FruitPrice decimal(10,3)
+						 )
+
+Insert tblFruitsDetails
+Values ('pappya', 100),('Mango',300),('Grapes', 120),('Babana', 200),('Apple',350)
+
+select * from tblFruitsDetails
+
+Go
+Create procedure proc_FruitsDetail
+As
+Begin
+set Nocount on
+
+	Select * from tblFruitsDetails
+End
+
 
 

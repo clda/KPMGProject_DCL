@@ -1,5 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DARSHANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblFruitsDetails">
+    <Key>
+      <PropertyRef Name="FruitId" />
+    </Key>
+    <Property Name="FruitId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FruitName" Type="varchar" MaxLength="50" />
+    <Property Name="FruitPrice" Type="decimal" Precision="10" Scale="3" />
+  </EntityType>
   <EntityType Name="tblProducts">
     <Key>
       <PropertyRef Name="iProductId" />
@@ -19,6 +27,7 @@
     <Property Name="vchUserPassword" Type="varchar" MaxLength="50" />
     <Property Name="vchUserRole" Type="varchar" MaxLength="50" />
   </EntityType>
+  <Function Name="proc_FruitsDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="Proc_UserLogin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="UserName" Type="varchar" Mode="In" />
   </Function>
@@ -27,6 +36,7 @@
   </Function>
   <Function Name="proc_ViewProducts" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="DARSHANModelStoreContainer">
+    <EntitySet Name="tblFruitsDetails" EntityType="Self.tblFruitsDetails" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblProducts" EntityType="Self.tblProducts" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblUserLoginDetails" EntityType="Self.tblUserLoginDetails" Schema="dbo" store:Type="Tables" />
   </EntityContainer>

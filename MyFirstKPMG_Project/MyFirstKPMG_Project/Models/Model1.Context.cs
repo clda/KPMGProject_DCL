@@ -29,6 +29,7 @@ namespace MyFirstKPMG_Project.Models
     
         public virtual DbSet<tblProduct> tblProducts { get; set; }
         public virtual DbSet<tblUserLoginDetail> tblUserLoginDetails { get; set; }
+        public virtual DbSet<tblFruitsDetail> tblFruitsDetails { get; set; }
     
         public virtual ObjectResult<Proc_UserLogin_Result> Proc_UserLogin(string userName)
         {
@@ -51,6 +52,11 @@ namespace MyFirstKPMG_Project.Models
         public virtual ObjectResult<proc_ViewProducts_Result> proc_ViewProducts()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_ViewProducts_Result>("proc_ViewProducts");
+        }
+    
+        public virtual ObjectResult<proc_FruitsDetail_Result> proc_FruitsDetail()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<proc_FruitsDetail_Result>("proc_FruitsDetail");
         }
     }
 }

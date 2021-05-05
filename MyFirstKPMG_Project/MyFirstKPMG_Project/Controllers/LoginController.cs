@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MyFirstKPMG_Project.Filters;
+using MyFirstKPMG_Project.Models;
+using System;
 using System.Linq;
 using System.Text;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using MyFirstKPMG_Project.Filters;
-using MyFirstKPMG_Project.Models;
+
+
 
 namespace MyFirstKPMG_Project.Controllers
 {
@@ -58,7 +58,9 @@ namespace MyFirstKPMG_Project.Controllers
         [AuthenticationFilter]
         public ActionResult LoginUser()
         {
-            return View();
+            DARSHANEntities2 db = new DARSHANEntities2();
+            var list = db.tblProducts.ToList();
+            return View(list);
         }
 
         public ActionResult UserSignOut()
